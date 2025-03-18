@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Unit Converter</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet">
+    <style>
+        /* Tryb jasny i ciemny */
+        body.dark-mode {
+            background-color: #06142E;
+            color: #E0E0E0;
+        }
+
+        .dark-mode .navbar {
+            background-color: #0B2545 !important;
+        }
+
+        .dark-mode .feature-card {
+            background-color: #102A4D;
+            color: #E0E0E0;
+            box-shadow: 0 2px 8px rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-dark-mode {
+            background-color: #1B3A6F;
+            color: #E0E0E0;
+            border: none;
+        }
+
+        .btn-dark-mode:hover {
+            background-color: #0F2A5A;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a href="index.html" class="navbar-brand">Home</a>
+            <div class="navbar-nav ms-auto">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                        Unit Converter
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="converter.html?type=length">Length</a></li>
+                        <li><a class="dropdown-item" href="converter.html?type=weight">Weight</a></li>
+                        <li><a class="dropdown-item" href="converter.html?type=temperature">Temperature</a></li>
+                        <li><a class="dropdown-item" href="converter.html?type=currency">Currency</a></li>
+                    </ul>
+                </li>
+                <a href="about.html" class="nav-link">About Us</a>
+                <button id="darkModeToggle" class="btn btn-sm btn-dark-mode ms-3">Dark Mode</button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mt-3">
+        <div class="home-container text-center">
+            <h1 class="display-6 mb-2">Welcome to Unit Converter</h1>
+            <p class="lead mb-2">Convert between Imperial and Metric units easily!</p>
+            <div class="row mt-3">
+                <div class="col-md-3 col-sm-6">
+                    <div class="feature-card p-3 text-center border rounded">
+                        <i class="fas fa-ruler-combined mb-1"></i>
+                        <h3>Length</h3>
+                        <p>Convert inches, feet, yards, and miles.</p>
+                        <span class="feature-highlight">1 mile ≈ 1.61 km</span>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="feature-card p-3 text-center border rounded">
+                        <i class="fas fa-balance-scale mb-1"></i>
+                        <h3>Weight</h3>
+                        <p>Convert pounds, ounces, and stones.</p>
+                        <span class="feature-highlight">1 lb ≈ 0.45 kg</span>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="feature-card p-3 text-center border rounded">
+                        <i class="fas fa-thermometer-half mb-1"></i>
+                        <h3>Temperature</h3>
+                        <p>Convert Fahrenheit to Celsius.</p>
+                        <span class="feature-highlight">°C = (°F - 32) × 5/9</span>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="feature-card p-3 text-center border rounded">
+                        <i class="fas fa-coins mb-1"></i>
+                        <h3>Currency</h3>
+                        <p>Convert USD, EUR, GBP, and more.</p>
+                        <span class="feature-highlight">Live rates updated</span>
+                    </div>
+                </div>
+            </div>
+            <a href="converter.html" class="btn btn-lg btn-outline-secondary mt-3">
+                Start Converting <i class="fas fa-arrow-right ms-2"></i>
+            </a>
+        </div>
+    </main>
+    
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const darkModeToggle = document.getElementById('darkModeToggle');
+
+            // Sprawdzenie, czy tryb ciemny był włączony wcześniej
+            if (localStorage.getItem('darkMode') === 'enabled') {
+                enableDarkMode();
+            }
+
+            darkModeToggle.addEventListener('click', () => {
+                if (document.body.classList.contains('dark-mode')) {
+                    disableDarkMode();
+                } else {
+                    enableDarkMode();
+                }
+            });
+
+            function enableDarkMode() {
+                document.body.classList.add('dark-mode');
+                document.querySelector('.navbar').classList.add('dark-mode');
+                document.querySelectorAll('.feature-card').forEach(card => {
+                    card.classList.add('dark-mode');
+                });
+                darkModeToggle.classList.add('btn-dark-mode');
+                localStorage.setItem('darkMode', 'enabled');
+            }
+
+            function disableDarkMode() {
+                document.body.classList.remove('dark-mode');
+                document.querySelector('.navbar').classList.remove('dark-mode');
+                document.querySelectorAll('.feature-card').forEach(card => {
+                    card.classList.remove('dark-mode');
+                });
+                darkModeToggle.classList.remove('btn-dark-mode');
+                localStorage.setItem('darkMode', 'disabled');
+            }
+        });
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
